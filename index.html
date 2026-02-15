@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💘 San Valentín Burlesco 2026 💘</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive;
+            background: linear-gradient(45deg, #ff6b9d, #c06c84, #f67280, #355c7d);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            animation: fall linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #fff;
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #ffe0e9;
+            font-style: italic;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 12px 48px rgba(0,0,0,0.3);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .card-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #c06c84;
+        }
+
+        .card-emoji {
+            font-size: 2em;
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            0%, 90% { transform: rotate(0deg); }
+            95% { transform: rotate(15deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .card-content {
+            color: #555;
+            line-height: 1.6;
+            font-size: 1em;
+        }
+
+        .card-reveal {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            margin-top: 10px;
+            padding-top: 0;
+            border-top: 2px dashed #ff6b9d;
+        }
+
+        .card.active .card-reveal {
+            max-height: 300px;
+            padding-top: 10px;
+        }
+
+        .secret-message {
+            background: #ffe0e9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+            font-style: italic;
+            border-left: 4px solid #ff6b9d;
+        }
+
+        .click-hint {
+            text-align: center;
+            color: #fff;
+            margin-top: 30px;
+            font-size: 0.9em;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .mejor-amiga {
+            border: 3px solid #ff1744;
+            background: linear-gradient(135deg, #fff 0%, #ffe0e9 100%);
+        }
+
+        .amigos {
+            border: 3px solid #2196f3;
+            background: linear-gradient(135deg, #fff 0%, #e3f2fd 100%);
+        }
+
+        .amigas {
+            border: 3px solid #e91e63;
+            background: linear-gradient(135deg, #fff 0%, #fce4ec 100%);
+        }
+
+        button {
+            background: #ff6b9d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+            transition: all 0.3s;
+            font-family: 'Comic Sans MS', cursive;
+        }
+
+        button:hover {
+            background: #c06c84;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    
+    <div class="container">
+        <header>
+            <h1>💘 Feliz San Valentín (Pero Sin Cursilería) 💘</h1>
+            <p class="subtitle">Porque los quiero... pero tampoco tanto 😏</p>
+        </header>
+
+        <div class="cards-grid">
+            <!-- CAMILA - MEJOR AMIGA -->
+            <div class="card mejor-amiga" onclick="toggleCard(this)">
+                <div class="card-header">
+                    <span class="card-name">CAMILA</span>
+                    <span class="card-emoji">👑</span>
+                </div>
+                <div class="card-content">
+                    Mi mejor amiga, mi partner in crime, mi cómplice de estupideces...
+                </div>
+                <div class="card-reveal">
+                    <div class="secret-message">
+                        Gracias por aguantarme todos los días y por reírte de mis chistes malos. Eres la Beyoncé de mi Destiny's Child. Sin ti, mi vida sería como Netflix sin wifi: técnicamente posible pero totalmente miserable. 💕
+                        <br><br>
+                        <strong>Nivel de amor:</strong> ★★★★★ (5/5 corazones... pero no se lo digas a nadie)
+                    </div>
+                    <button onclick="alert('¡Camila es la mejor! 👑'); event.stopPropagation();">💝 Reacción Especial</button>
+                </div>
+            </div>
+
+            <!-- NEIL -->
+            <div class="card amigos" onclick="toggleCard(this)">
+                <div class="card-header">
+                    <span class="card-name">NEIL</span>
+                    <span class="card-emoji">🎮</span>
+                </div>
+                <div class="card-content">
+                    El pana que siempre tiene una historia random para contar...
+                </div>
+                <div class="card-reveal">
+                    <div class="secret-message">
+                        Bro, gracias por existir y por hacer que hasta las cosas más aburridas sean entretenidas. Eres como el DLC gratis que mejora el juego. Keep being awesome! 🚀
+                        <br><br>
+                        <strong>Dato curioso:</strong> Eres 87% genial y 13% memes malos
+                    </div>
+                    <button onclick="alert('Neil approved! 🎮'); event.stopPropagation();">🎯 Click aquí</button>
+                </div>
+            </div>
+
+            <!-- ANGEL -->
+            <div class="card amigos" onclick="toggleCard(this)">
+                <div class="card-header">
+                    <span class="card-name">ANGEL</span>
+                    <span class="card-emoji">😎</span>
+                </div>
+                <div class="card-content">
+                    El que siempre tiene el comentario perfecto en el momento perfecto...
+                </div>
+                <div class="card-reveal">
+                    <div class="secret-message">
+                        Angel, tu nombre es irónico porque a veces eres más diablillo que otra cosa jajaja. Pero así te queremos, nunca cambies ese humor. 😈
+                        <br><br>
+                        <strong>Status:</strong> Oficialmente cool ✓
+                    </div>
+                    <button onclick="alert('Angel mode activated! 😎'); event.stopPropagation();">⚡ Activar</button>
+                </div>
+            </div>
+
+            <!-- ELICEO -->
+            <div class="card amigos" onclick="toggleCard(this)">
+                <div class="card-header">
+                    <span class="card-name">ELICEO</span>
+                    <span class="card-emoji">🔥</span>
+                </div>
+                <div class="card-content">
+                    El bro con la energía que nunca se acaba...
+                </div>
+                <div class="card-reveal">
+                    <div class="secret-message">
+                        Eliceo, eres como esas pilas Duracell que salen en los comerciales: siempre activo y listo para la acción. Gracias por contagiar esa vibra! 💪
+                        <br><br>
+                        <strong>Poder:</strong> Energía infinita × 1000
+                    </div>
+                    <button onclick="alert('Eliceo is on fire! 🔥'); event.stopPropagation();">💥 Explotar</button>
+                </div>
+            </div>
+
+            <!-- CHUBBY -->
+            <div class="card amigos" onclick="toggleCard(this)">
+                <div class="card-header">
+                    <span class="card-name">CHUBBY</span>
+                    <span class="card-emoji">😄</span>
+                </div>
+                <div class="card-content">
+                    El que siempre saca una sonrisa hasta en los peores momentos...
+                </div>
+                <div class="card-reveal">
+                    <div class="secret-message">
+                        Chubby, tu risa es contagiosa y tu buena onda es legendaria. Eres el tipo de amigo que hace que todo sea más divertido. ¡Sigue así! 🌟
+                        <br><br>
+                        <strong>Superpoder:</strong> Hacer reír sin esfuerzo
+                    </div>
+                    <button onclick="alert('Chubby power! 😄'); event.stopPropagation();">🎉 Celebrar</button>
+                </div>
+            </div>
+
+            <!-- WILSON -->
+            <div class="card amigos" onclick="toggleCard(this)">
+                <div class="card-header">
+                    <span class="card-name">WILSON</span>
+                    <span class="card-emoji">🎵</span>
+                </div>
+                <div class="card-content">
+                    El pana que siempre tiene la playlist perfecta...
+                </div>
+                <div class="card-reveal">
+                    <div class="secret-message">
+                        Wilson, eres como Spotify Premium: siempre tienes lo que necesito y sin anuncios molestos jajaja. Gracias por tu buena vibra, hermano!(meco de) 🎧
+                        <br><br>
+                        <strong>Rating:</strong> 10/10 would recommend
+                    </div>
+                    <button onclick="alert('Wilson vibes! 🎵'); event.stopPropagation();">🎶 Play</button>
+                </div>
+            </div>
+
+            <!-- GENESIS -->
+            <div class="card amigas" onclick="toggleCard(this)">
+                <div class="card-header">
+                    <span class="card-name">GENESIS</span>
+                    <span class="card-emoji">✨</span>
+                </div>
+                <div class="card-content">
+                    La reina del drama (del bueno) y las historias épicas...
+                </div>
+                <div class="card-reveal">
+                    <div class="secret-message">
+                        Genesis, contigo nunca hay momento aburrido. Eres como una serie de Netflix: siempre hay plot twists y nunca sé qué esperar. Love it! 💫
+                        <br><br>
+                        <strong>Especialidad:</strong> Mantener la vida interesante
+                    </div>
+                    <button onclick="alert('Genesis energy! ✨'); event.stopPropagation();">💫 Brillar</button>
+                </div>
+            </div>
+
+            <!-- VIVI -->
+            <div class="card amigas" onclick="toggleCard(this)">
+                <div class="card-header">
+                    <span class="card-name">VIVI</span>
+                    <span class="card-emoji">🌸</span>
+                </div>
+                <div class="card-content">
+                    La amiga con el corazón más grande del mundo...
+                </div>
+                <div class="card-reveal">
+                    <div class="secret-message">
+                        Vivi, eres pura dulzura pero cuando te enojas... mejor correr jajaja. Gracias por ser tan auténtica y por estar siempre ahí. Te quiero un montón! 💕
+                        <br><br>
+                        <strong>Modo:</strong> 95% ángel, 5% savage
+                    </div>
+                    <button onclick="alert('Vivi love! 🌸'); event.stopPropagation();">🌺 Florecer</button>
+                </div>
+            </div>
+
+            <!-- NAHOMY -->
+            <div class="card amigas" onclick="toggleCard(this)">
+                <div class="card-header">
+                    <span class="card-name">NAHOMY</span>
+                    <span class="card-emoji">💖</span>
+                </div>
+                <div class="card-content">
+                    La amiga que siempre tiene el consejo perfecto (o el chisme)...
+                </div>
+                <div class="card-reveal">
+                    <div class="secret-message">
+                        Nahomy, eres la combinación perfecta entre sabía consejera y partner de aventuras. Gracias por ser real y por todas las risas compartidas! 🎭
+                        <br><br>
+                        <strong>Habilidad especial:</strong> Tener siempre la razón (o casi)
+                    </div>
+                    <button onclick="alert('Nahomy rocks! 💖'); event.stopPropagation();">💗 Querer</button>
+                </div>
+            </div>
+
+            <!-- PAULA -->
+            <div class="card amigas" onclick="toggleCard(this)">
+                <div class="card-header">
+                    <span class="card-name">PAULA</span>
+                    <span class="card-emoji">🌟</span>
+                </div>
+                <div class="card-content">
+                    La chica con estilo propio y personalidad única...
+                </div>
+                <div class="card-reveal">
+                    <div class="secret-message">
+                        Paula, eres como ese outfit que todos admiran: única, original y siempre on point. Gracias por ser tú y por aportar tanto al grupo! 👗
+                        <br><br>
+                        <strong>Level:</strong> Influencer de la amistad
+                    </div>
+                    <button onclick="alert('Paula style! 🌟'); event.stopPropagation();">⭐ Destacar</button>
+                </div>
+            </div>
+
+            <!-- LILI -->
+            <div class="card amigas" onclick="toggleCard(this)">
+                <div class="card-header">
+                    <span class="card-name">LILI</span>
+                    <span class="card-emoji">🦋</span>
+                </div>
+                <div class="card-content">
+                    La amiga con la risa más contagiosa del planeta...
+                </div>
+                <div class="card-reveal">
+                    <div class="secret-message">
+                        Lili, tu risa es mi antídoto contra los días grises. Eres pura luz y alegría, nunca pierdas esa esencia hermosa que te hace tan especial! 🌈
+                        <br><br>
+                        <strong>Certificado:</strong> Oficial de buenas vibras
+                    </div>
+                    <button onclick="alert('Lili magic! 🦋'); event.stopPropagation();">🌈 Iluminar</button>
+                </div>
+            </div>
+        </div>
+
+        <p class="click-hint">👆 Haz click en cada tarjeta para revelar el mensaje secreto 👆</p>
+    </div>
+
+    <script>
+        // Crear corazones cayendo
+        function createHeart() {
+            const hearts = ['💖', '💝', '💗', '💓', '💕', '💘', '❤️', '🖤'];
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            document.getElementById('hearts').appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+
+        // Toggle card reveal
+        function toggleCard(card) {
+            card.classList.toggle('active');
+        }
+
+        // Agregar efecto de confeti cuando se hace click en botones
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                createConfetti(e.pageX, e.pageY);
+            });
+        });
+
+        function createConfetti(x, y) {
+            const colors = ['#ff6b9d', '#c06c84', '#f67280', '#355c7d', '#ffd700'];
+            for (let i = 0; i < 15; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.left = x + 'px';
+                confetti.style.top = y + 'px';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.borderRadius = '50%';
+                confetti.style.pointerEvents = 'none';
+                confetti.style.zIndex = '9999';
+                document.body.appendChild(confetti);
+
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = Math.random() * 5 + 5;
+                const vx = Math.cos(angle) * velocity;
+                const vy = Math.sin(angle) * velocity;
+
+                let posX = 0;
+                let posY = 0;
+                let opacity = 1;
+
+                const animation = setInterval(() => {
+                    posX += vx;
+                    posY += vy;
+                    opacity -= 0.02;
+                    confetti.style.transform = `translate(${posX}px, ${posY}px)`;
+                    confetti.style.opacity = opacity;
+
+                    if (opacity <= 0) {
+                        clearInterval(animation);
+                        confetti.remove();
+                    }
+                }, 16);
+            }
+        }
+
+        // Agregar sonido de click (opcional)
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Efecto visual adicional al hacer click
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 10);
+            });
+        });
+    </script>
+</body>
+</html>
